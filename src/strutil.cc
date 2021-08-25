@@ -435,8 +435,9 @@ std::string_view TrimLeadingCurdir(std::string_view s) {
 }
 
 void FormatForCommandSubstitution(std::string* s) {
-  while ((*s)[s->size() - 1] == '\n')
+  while (s->size() > 0 && (*s)[s->size() - 1] == '\n') {
     s->pop_back();
+  }
   for (size_t i = 0; i < s->size(); i++) {
     if ((*s)[i] == '\n')
       (*s)[i] = ' ';
